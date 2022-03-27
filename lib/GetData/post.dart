@@ -4,7 +4,8 @@
 
 import 'dart:convert';
 
-Post postFromJson(String str) => Post.fromJson(json.decode(str));
+//CHANGE
+Post postFromJson(Map<String, dynamic> json) => Post.fromJson(json);
 
 String postToJson(Post data) => json.encode(data.toJson());
 
@@ -27,7 +28,7 @@ class Post {
   List<String> genres;
   String href;
   String id;
-  List<Image> images;
+  List<Pic> images;
   String name;
   int popularity;
   String type;
@@ -39,7 +40,7 @@ class Post {
         genres: List<String>.from(json["genres"].map((x) => x)),
         href: json["href"],
         id: json["id"],
-        images: List<Image>.from(json["images"].map((x) => Image.fromJson(x))),
+        images: List<Pic>.from(json["images"].map((x) => Pic.fromJson(x))),
         name: json["name"],
         popularity: json["popularity"],
         type: json["type"],
@@ -96,8 +97,8 @@ class Followers {
       };
 }
 
-class Image {
-  Image({
+class Pic {
+  Pic({
     this.height,
     this.url,
     this.width,
@@ -107,7 +108,7 @@ class Image {
   String url;
   int width;
 
-  factory Image.fromJson(Map<String, dynamic> json) => Image(
+  factory Pic.fromJson(Map<String, dynamic> json) => Pic(
         height: json["height"],
         url: json["url"],
         width: json["width"],

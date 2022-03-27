@@ -18,14 +18,23 @@ class _GetDataClassState extends State<GetDataClass> {
 
   var isLoading = true;
 
+  Pic _pic;
   @override
   void initState() {
     super.initState();
-    getData();
+    //CHANGE
+    middle();
+  }
+
+  //CHANGE
+  void middle() async {
+    await getData();
   }
 
   getData() async {
-    posts = await RemoteService().getPosts();
+    //CHANGE
+    Post singlePost = await RemoteService().getPosts();
+    posts.add(singlePost);
     if (posts != null) {
       setState(() {
         isLoading = true;
@@ -42,9 +51,24 @@ class _GetDataClassState extends State<GetDataClass> {
           child: ListView.builder(
               itemCount: posts == null ? 0 : posts.length,
               itemBuilder: (context, index) {
-                return Text(
-                  posts[index].name,
-                  style: const TextStyle(color: Colors.white),
+                print(posts[index].images.toString());
+
+                return Column(
+                  children: [
+                    Text(
+                      posts[index].name,
+                      style: const TextStyle(color: Colors.white, fontSize: 50),
+                    ),
+                    Text(
+                      posts[index].popularity.toString(),
+                      style: const TextStyle(color: Colors.white, fontSize: 50),
+                    ),
+                    Text(
+                      posts[index].genres.toString(),
+                      style: const TextStyle(color: Colors.white, fontSize: 50),
+                    ),
+                    // Image.network(posts[index].images[1].toString())
+                  ],
                 );
               }),
           replacement: const Center(
