@@ -18,7 +18,6 @@ class _GetDataClassState extends State<GetDataClass> {
 
   var isLoading = true;
 
-  Pic _pic;
   @override
   void initState() {
     super.initState();
@@ -51,25 +50,30 @@ class _GetDataClassState extends State<GetDataClass> {
           child: ListView.builder(
               itemCount: posts == null ? 0 : posts.length,
               itemBuilder: (context, index) {
-                print(posts[index].images.toString());
-
-                return Column(
-                  children: [
-                    Text(
-                      posts[index].name,
-                      style: const TextStyle(color: Colors.white, fontSize: 50),
-                    ),
-                    Text(
-                      posts[index].popularity.toString(),
-                      style: const TextStyle(color: Colors.white, fontSize: 50),
-                    ),
-                    Text(
-                      posts[index].genres.toString(),
-                      style: const TextStyle(color: Colors.white, fontSize: 50),
-                    ),
-                    // Image.network(posts[index].images[1].toString())
-                  ],
-                );
+                print(posts[index].data.elementAt(index).artist.toString());
+                // print(posts[index].status);
+                return Text(posts[index].data.elementAt(index).artist);
+                // Column(
+                //   children: [
+                //     Text(
+                //       posts[index].name,
+                //       style: const TextStyle(color: Colors.white, fontSize: 50),
+                //     ),
+                //     Text(
+                //       posts[index].popularity.toString(),
+                //       style: const TextStyle(color: Colors.white, fontSize: 50),
+                //     ),
+                //     Text(
+                //       posts[index].genres.toString(),
+                //       style: const TextStyle(color: Colors.white, fontSize: 50),
+                //     ),
+                //     Image.network(posts[index].images.elementAt(1).url),
+                //     Text(
+                //       posts[index].followers.total.toString(),
+                //       style: const TextStyle(color: Colors.white, fontSize: 50),
+                //     ),
+                //   ],
+                // );
               }),
           replacement: const Center(
             child: CircularProgressIndicator(),

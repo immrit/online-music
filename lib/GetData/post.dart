@@ -1,122 +1,59 @@
+//CHANGE
+// Post postFromJson(Map<String, dynamic> json) => Post.fromJson(json);
 // To parse this JSON data, do
 //
 //     final post = postFromJson(jsonString);
 
 import 'dart:convert';
 
-//CHANGE
 Post postFromJson(Map<String, dynamic> json) => Post.fromJson(json);
 
 String postToJson(Post data) => json.encode(data.toJson());
 
 class Post {
   Post({
-    this.externalUrls,
-    this.followers,
-    this.genres,
-    this.href,
-    this.id,
-    this.images,
-    this.name,
-    this.popularity,
-    this.type,
-    this.uri,
+    this.data,
   });
 
-  ExternalUrls externalUrls;
-  Followers followers;
-  List<String> genres;
-  String href;
-  String id;
-  List<Pic> images;
-  String name;
-  int popularity;
-  String type;
-  String uri;
+  List<Datum> data;
 
   factory Post.fromJson(Map<String, dynamic> json) => Post(
-        externalUrls: ExternalUrls.fromJson(json["external_urls"]),
-        followers: Followers.fromJson(json["followers"]),
-        genres: List<String>.from(json["genres"].map((x) => x)),
-        href: json["href"],
-        id: json["id"],
-        images: List<Pic>.from(json["images"].map((x) => Pic.fromJson(x))),
-        name: json["name"],
-        popularity: json["popularity"],
-        type: json["type"],
-        uri: json["uri"],
+        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "external_urls": externalUrls.toJson(),
-        "followers": followers.toJson(),
-        "genres": List<dynamic>.from(genres.map((x) => x)),
-        "href": href,
-        "id": id,
-        "images": List<dynamic>.from(images.map((x) => x.toJson())),
-        "name": name,
-        "popularity": popularity,
-        "type": type,
-        "uri": uri,
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
       };
 }
 
-class ExternalUrls {
-  ExternalUrls({
-    this.spotify,
-  });
-
-  String spotify;
-
-  factory ExternalUrls.fromJson(Map<String, dynamic> json) => ExternalUrls(
-        spotify: json["spotify"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "spotify": spotify,
-      };
-}
-
-class Followers {
-  Followers({
-    this.href,
-    this.total,
-  });
-
-  dynamic href;
-  int total;
-
-  factory Followers.fromJson(Map<String, dynamic> json) => Followers(
-        href: json["href"],
-        total: json["total"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "href": href,
-        "total": total,
-      };
-}
-
-class Pic {
-  Pic({
-    this.height,
+class Datum {
+  Datum({
+    this.title,
+    this.artist,
     this.url,
-    this.width,
+    this.file,
+    this.cover,
   });
 
-  int height;
+  String title;
+  String artist;
   String url;
-  int width;
+  String file;
+  String cover;
 
-  factory Pic.fromJson(Map<String, dynamic> json) => Pic(
-        height: json["height"],
+  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+        title: json["title"],
+        artist: json["artist"],
         url: json["url"],
-        width: json["width"],
+        file: json["file"],
+        cover: json["cover"],
       );
 
   Map<String, dynamic> toJson() => {
-        "height": height,
+        "title": title,
+        "artist": artist,
         "url": url,
-        "width": width,
+        "file": file,
+        "cover": cover,
       };
 }
