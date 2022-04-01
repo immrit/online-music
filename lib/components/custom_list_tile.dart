@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
-Widget Custom_List_tile({String title, String singer, String cover, ontap}) {
+Widget Custom_List_tile(
+    {required String title,
+    required String singer,
+    required String cover,
+    ontap}) {
   return InkWell(
     onTap: ontap,
     child: Container(

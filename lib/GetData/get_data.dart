@@ -1,85 +1,54 @@
-import 'dart:convert';
+// import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
-import 'package:online_music/GetData/Remote_Service.dart';
-import 'package:online_music/GetData/post.dart';
+// import 'Post.dart';
+// import 'Remote_Service.dart';
 
-class GetDataClass extends StatefulWidget {
-  const GetDataClass({Key key}) : super(key: key);
 
-  @override
-  State<GetDataClass> createState() => _GetDataClassState();
-}
+// class GetData extends StatefulWidget {
+//   const GetData({Key? key}) : super(key: key);
 
-class _GetDataClassState extends State<GetDataClass> {
-  List<Post> posts = [];
+//   @override
+//   State<GetData> createState() => _GetDataState();
+// }
 
-  var isLoading = true;
+// class _GetDataState extends State<GetData> {
+//   late Future<Post> posts;
 
-  @override
-  void initState() {
-    super.initState();
-    //CHANGE
-    middle();
-  }
+//   @override
+//   void initState() {
+//     super.initState();
+//     posts = fetchPost();
+//   }
 
-  //CHANGE
-  void middle() async {
-    await getData();
-  }
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//         body: Center(
+//       child: FutureBuilder<Post>(
+//         future: posts,
+//         builder: (context, snapshot) {
+//           if (snapshot.hasData) {
+//             return ListView.builder(
+//               itemCount: snapshot.data!.data.length,
+//               itemBuilder: ((context, index) {
+//                 return Card(
+//                   child: Column(
+//                     children: [
+//                       Text(snapshot.data!.data[index].artist),
+//                       Text(snapshot.data!.data.elementAt(index).title),
+//                     ],
+//                   ),
+//                 );
+//               }),
+//             );
+//           } else if (snapshot.hasError) {
+//             return Text('${snapshot.error}');
+//           }
 
-  getData() async {
-    //CHANGE
-    Post singlePost = await RemoteService().getPosts();
-    posts.add(singlePost);
-    if (posts != null) {
-      setState(() {
-        isLoading = true;
-      });
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Visibility(
-          visible: isLoading,
-          child: ListView.builder(
-              itemCount: posts == null ? 0 : posts.length,
-              itemBuilder: (context, index) {
-                print(posts[index].data.elementAt(index).artist.toString());
-                // print(posts[index].status);
-                return Text(posts[index].data.elementAt(index).artist);
-                // Column(
-                //   children: [
-                //     Text(
-                //       posts[index].name,
-                //       style: const TextStyle(color: Colors.white, fontSize: 50),
-                //     ),
-                //     Text(
-                //       posts[index].popularity.toString(),
-                //       style: const TextStyle(color: Colors.white, fontSize: 50),
-                //     ),
-                //     Text(
-                //       posts[index].genres.toString(),
-                //       style: const TextStyle(color: Colors.white, fontSize: 50),
-                //     ),
-                //     Image.network(posts[index].images.elementAt(1).url),
-                //     Text(
-                //       posts[index].followers.total.toString(),
-                //       style: const TextStyle(color: Colors.white, fontSize: 50),
-                //     ),
-                //   ],
-                // );
-              }),
-          replacement: const Center(
-            child: CircularProgressIndicator(),
-          ),
-        ),
-      ),
-    );
-  }
-}
+//           // By default, show a loading spinner.
+//           return const CircularProgressIndicator();
+//         },
+//       ),
+//     ));
+//   }
+// }
