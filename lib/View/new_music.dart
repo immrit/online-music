@@ -114,16 +114,6 @@ class _MusicAppState extends State<MusicApp> {
                             boxShadow: [BoxShadow(color: Color(0x55212121))]),
                         child: Column(
                           children: [
-                            // Slider.adaptive(
-                            //     value: posation.inSeconds.toDouble(),
-                            //     min: 0.0,
-                            //     max: duration.inSeconds.toDouble(),
-                            //     onChanged: (double value) {
-                            //       setState(() {
-                            //         seekToSecond(value.toInt());
-                            //         value = value;
-                            //       });
-                            //     }),
                             ProgressBar(
                               progress: posation,
                               buffered: duration,
@@ -211,12 +201,4 @@ class _MusicAppState extends State<MusicApp> {
               }),
         ));
   }
-}
-
-class DurationState {
-  const DurationState(
-      {required this.progress, required this.buffered, required this.total});
-  final Duration progress;
-  final Duration buffered;
-  final Duration total;
 }
