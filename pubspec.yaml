@@ -1,4 +1,4 @@
-name: online_music
+name: vista_music
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -38,6 +38,10 @@ dependencies:
   audioplayers: ^0.20.1
   audio_video_progress_bar: ^0.10.0
   http: ^0.13.4
+  # syncfusion_flutter_sliders: ^19.4.56
+  # just_audio: ^0.9.20
+  # audio_session: ^0.1.6+1
+  # rxdart: ^0.27.3
   
 dev_dependencies:
   flutter_test:

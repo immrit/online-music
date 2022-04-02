@@ -18,6 +18,8 @@ class Post {
         data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
       );
 
+  get progress => null;
+
   Map<String, dynamic> toJson() => {
         "status": status,
         "data": List<dynamic>.from(data.map((x) => x.toJson())),

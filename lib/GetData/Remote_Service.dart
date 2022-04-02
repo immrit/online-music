@@ -1,8 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'Post.dart';
 import 'package:http/http.dart' as http;
+
+import 'Post.dart';
 
 Future<Post> fetchPost() async {
   final response = await http.get(

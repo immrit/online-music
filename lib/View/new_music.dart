@@ -1,8 +1,9 @@
 import 'dart:io';
 
+import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:online_music/GetData/Remote_Service.dart';
+import '../GetData/Remote_Service.dart';
 
 import '../GetData/Post.dart';
 import '../components/custom_list_tile.dart';
@@ -73,7 +74,7 @@ class _MusicAppState extends State<MusicApp> {
         appBar: AppBar(
           // backgroundColor: Colors.white,
           title: const Text(
-            "Online Music",
+            "VistaMusic",
           ),
         ),
         body: Center(
@@ -113,16 +114,31 @@ class _MusicAppState extends State<MusicApp> {
                             boxShadow: [BoxShadow(color: Color(0x55212121))]),
                         child: Column(
                           children: [
-                            Slider.adaptive(
-                                value: posation.inSeconds.toDouble(),
-                                min: 0.0,
-                                max: duration.inSeconds.toDouble(),
-                                onChanged: (double value) {
-                                  setState(() {
-                                    seekToSecond(value.toInt());
-                                    value = value;
-                                  });
-                                }),
+                            // Slider.adaptive(
+                            //     value: posation.inSeconds.toDouble(),
+                            //     min: 0.0,
+                            //     max: duration.inSeconds.toDouble(),
+                            //     onChanged: (double value) {
+                            //       setState(() {
+                            //         seekToSecond(value.toInt());
+                            //         value = value;
+                            //       });
+                            //     }),
+                            ProgressBar(
+                              progress: posation,
+                              buffered: duration,
+                              total: Duration(seconds: duration.inSeconds),
+                              thumbColor: Colors.red,
+                              baseBarColor: Colors.white,
+                              progressBarColor: Colors.red,
+                              onSeek: (duration) {
+                                print('User selected a new time: $duration');
+                                setState(() {
+                                  seekToSecond(duration.inSeconds);
+                                  duration = duration;
+                                });
+                              },
+                            ),
                             Padding(
                               padding: const EdgeInsets.only(
                                   bottom: 8.0, left: 12.0, right: 12.0),
@@ -195,4 +211,12 @@ class _MusicAppState extends State<MusicApp> {
               }),
         ));
   }
+}
+
+class DurationState {
+  const DurationState(
+      {required this.progress, required this.buffered, required this.total});
+  final Duration progress;
+  final Duration buffered;
+  final Duration total;
 }
